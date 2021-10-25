@@ -96,3 +96,43 @@ test.pop();
 // console.log(test.pop());
 
 console.log(test.storage);
+
+class Stacker {
+	constructor() {
+		this.storage = {};
+		this.count = 0;
+	}
+	push(el) {
+		this.count++;
+		this.storage[this.count] = el;
+	}
+	pop() {
+		if (this.count === 0) return undefined;
+		let temp = this.storage[this.count];
+		delete this.storage[this.count];
+		this.count--;
+		return temp;
+	}
+	peek() {
+		return this.storage[this.count];
+	}
+	clear() {
+		this.count = 0;
+		this.storage = {};
+	}
+	size() {
+		return this.count;
+	}
+}
+
+const stackStack = new Stacker();
+
+stackStack.push('test');
+stackStack.push('test2');
+console.log(stackStack.pop());
+stackStack.push('test3');
+console.log(stackStack.peek());
+stackStack.clear();
+console.log(stackStack.size());
+
+console.log(stackStack.storage);
